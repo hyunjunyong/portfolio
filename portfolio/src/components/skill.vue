@@ -1,26 +1,20 @@
 <template>
   <v-container>
-    <v-card>
+    <v-card class="pa-5">
       <v-card-title>My Skill</v-card-title>
 
-      HTML5,CSS
-      <v-progress-linear
-        value="80"
-        height="10px"
-        color="#ec407a"
-      ></v-progress-linear>
-      Javscript
-      <v-progress-linear
-        value="80"
-        height="10px"
-        color="#f4511e"
-      ></v-progress-linear>
-      vue
-      <v-progress-linear
-        value="50"
-        height="10px"
-        color="#512da8"
-      ></v-progress-linear>
+      <v-card-text>
+        <div v-for="(data, index) in skills" :key="index">
+          {{ data.skill }}
+          <v-progress-linear
+            :value="data.sPercent"
+            height="15px"
+            :color="data.sColor"
+          >
+            {{ data.sPercent }}
+          </v-progress-linear>
+        </div>
+      </v-card-text>
     </v-card>
   </v-container>
 </template>
@@ -29,7 +23,14 @@ export default {
   name: "",
   components: {},
   data() {
-    return {};
+    return {
+      skills: [
+        { skill: "HTML5,CSS3", sPercent: "80%", sColor: "#ec407a" },
+        { skill: "Javscript", sPercent: "80%", sColor: "#f4511e" },
+        { skill: "Vue.Js", sPercent: "50%", sColor: "#512da8" },
+      ],
+      increasing: 0,
+    };
   },
   setup() {},
   create() {},
