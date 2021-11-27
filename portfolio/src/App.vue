@@ -2,15 +2,18 @@
   <v-app>
     <Header />
     <Intro />
-    <v-divider></v-divider>
+    <v-divider />
     <Skill />
+    <v-divider />
+    <Project />
   </v-app>
 </template>
 
 <script>
-import Header from "./components/Header.vue";
+import Header from "./components/title.vue";
 import Intro from "./components/intro.vue";
 import Skill from "./components/skill.vue";
+import Project from "./components/project.vue";
 export default {
   name: "App",
 
@@ -18,6 +21,7 @@ export default {
     Header,
     Intro,
     Skill,
+    Project,
   },
 
   data: () => ({
