@@ -12,10 +12,6 @@ ul {
   padding: 0;
   margin: 0;
 }
-dl {
-  display: flex;
-  gap: 30px;
-}
 dd {
   margin: 0;
 }

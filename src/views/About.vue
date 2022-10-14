@@ -17,10 +17,16 @@
       <div class="intro" ref="intro">
         <h1>Intro</h1>
         <img src="../assets/myImg.jpeg" alt="" />
-        <h3>현준용 || Portfolio</h3>
-        안녕하세요 프론트엔드 개발자 현준용입니다! 혼자하는것보단 여러사람과
-        협업하여 커뮤니케이션을 하는 것을 즐기고 어려운 문제에 직면해도 해결하기
-        위해 끊임없이 도전하는 것을 지향합니다.
+        <dl>
+          <dt>
+            <h3>현준용 || FrontEnd Portfolio</h3>
+          </dt>
+          <dd>
+            안녕하세요 프론트엔드 개발자 현준용입니다! 혼자하는것보단 여러사람과
+            협업하여 커뮤니케이션을 하는 것을 즐기고 어려운 문제에 직면해도
+            해결하기 위해 끊임없이 도전하는 것을 지향합니다.
+          </dd>
+        </dl>
       </div>
       <div class="profile" ref="profile">
         <h1>Profile</h1>
@@ -183,6 +189,11 @@ export default {
   padding: 10px;
   background-color: #00b9ce;
 }
+.intro dl {
+  text-align: center;
+  width: 70%;
+  margin: 0 auto;
+}
 .profile {
   padding: 10px;
   display: flex;
@@ -202,11 +213,16 @@ export default {
 .profile ul li {
   margin-bottom: 10px;
 }
+.profile dl {
+  display: flex;
+  gap: 30px;
+}
 th,
 td {
   border-bottom: 1px solid #444444;
   padding: 10px;
 }
+
 table {
   border-spacing: 20px;
 }
@@ -215,5 +231,8 @@ table {
 }
 .skill td img {
   margin-right: 2px;
+}
+h1 {
+  text-align: center;
 }
 </style>
