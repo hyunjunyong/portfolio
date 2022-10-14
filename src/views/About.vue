@@ -1,7 +1,9 @@
 <template>
   <div id="content">
     <div id="nav">
-      <div class="navTitle">PortFolio</div>
+      <div class="navTitle">
+        <h1>PortFolio</h1>
+      </div>
       <div class="navMenu">
         <ul>
           <li><a @click="scrollMoveIntro()">Intro</a></li>
@@ -168,18 +170,35 @@ export default {
   gap: 10px;
   list-style-type: none;
 }
+.navMenu ul a {
+  font-size: 1.2rem;
+}
+
 .intro img {
   width: 180px;
   height: 200px;
   border-radius: 50%;
 }
+.intro {
+  padding: 10px;
+  background-color: #00b9ce;
+}
 .profile {
+  padding: 10px;
   display: flex;
   gap: 30px;
   justify-content: center;
   align-items: center;
+  background-color: #83cdbe;
 }
-
+.project {
+  padding: 10px;
+  background-color: #0064a2;
+}
+.skill {
+  padding: 10px;
+  background-color: #7bb6d4;
+}
 .profile ul li {
   margin-bottom: 10px;
 }
