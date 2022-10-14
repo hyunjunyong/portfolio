@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <div id="nav">PortFolio</div>
     <router-view />
   </div>
 </template>
@@ -20,7 +19,7 @@ dd {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
+  padding-top: 70px;
   color: #2c3e50;
   width: 70%;
   margin: 0 auto;
@@ -31,5 +30,12 @@ dd {
   text-align: center;
   position: fixed;
   top: 0;
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+}
+
+a {
+  cursor: pointer;
 }
 </style>
