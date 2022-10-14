@@ -6,6 +6,16 @@
 </template>
 
 <style>
+ul {
+  padding: 0;
+}
+dl {
+  display: flex;
+  gap: 30px;
+}
+dd {
+  margin: 0;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -19,5 +29,7 @@
 #nav {
   padding: 30px;
   text-align: center;
+  position: fixed;
+  top: 0;
 }
 </style>

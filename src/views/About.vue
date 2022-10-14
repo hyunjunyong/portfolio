@@ -38,10 +38,82 @@
         </dl>
       </div>
     </div>
-    <div class=""></div>
-    <div class=""></div>
-    <div class=""></div>
-    <div class="context"></div>
+    <div class="project"></div>
+    <div class="skill">
+      <table>
+        <tbody>
+          <tr>
+            <td>📒 Language</td>
+            <td>
+              <img
+                src="https://img.shields.io/badge/JAVASCRIPT-F7DF1E?style=flat-the-badge&logo=JavaScript&logoColor=white"
+              />
+              <img
+                src="https://img.shields.io/badge/TYPESCRIPT-%233178C6?style=flat-the-badge&logo=TypeScript&logoColor=white"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>📕 Framework / Library</td>
+            <td>
+              <img
+                src="https://img.shields.io/badge/VUE-%234FC08D?style=flat-the-badge&logo=Vue.Js&logoColor=white"
+              />
+              <img
+                src="https://img.shields.io/badge/VUEX-%233178C6?style=flat-the-badge&logo=Vuex&logoColor=white"
+              />
+              <img
+                src="https://img.shields.io/badge/-VUE--ROUTER-%234FC08D?style=flat-the-badge"
+              />
+              <img
+                src="https://img.shields.io/badge/NODEJS-%23339933?style=flat-the-badge&logo=Node.Js&logoColor=white"
+              />
+              <img
+                src="https://img.shields.io/badge/VUETIFY-%231867C0?style=flat-the-badge&logo=Vuetify&logoColor=white"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>📗 Tool</td>
+            <td>
+              <img
+                src="https://img.shields.io/badge/github-181717?style=flat-the-badge&logo=github&logoColor=white"
+              />
+              <img
+                src="https://img.shields.io/badge/git-F05032?style=flat-the-badge&logo=git&logoColor=white"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>📘 MarkUp</td>
+            <td>
+              <img
+                src="https://img.shields.io/badge/HTML5-E34F26?style=flat-the-badge&logo=HTML5&logoColor=white"
+              />
+              <img
+                src="https://img.shields.io/badge/CSS3-1572B6?style=flat-the-badge&logo=CSS3&logoColor=white"
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <dl>
+        <dt></dt>
+        <dd></dd>
+      </dl>
+      <dl>
+        <dt></dt>
+        <dd></dd>
+      </dl>
+      <dl>
+        <dt></dt>
+        <dd></dd>
+      </dl>
+      <dl>
+        <dt></dt>
+        <dd></dd>
+      </dl>
+    </div>
   </div>
 </template>
 
@@ -68,10 +140,16 @@ export default {
   height: 200px;
   border-radius: 50%;
 }
-ul {
-  padding: 0;
+
+th,
+td {
+  border-bottom: 1px solid #444444;
+  padding: 10px;
 }
-dd {
-  margin: 0;
+table {
+  border-spacing: 20px;
+}
+.skill td img {
+  margin: 5px;
 }
 </style>
