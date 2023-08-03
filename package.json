@@ -15,11 +15,11 @@
     "@pinia/nuxt": "^0.4.11",
     "@types/node": "^18.17.1",
     "autoprefixer": "^10.4.14",
-    "element-plus": "^2.3.8",
     "nuxt": "^3.6.5",
     "postcss": "^8.4.27"
   },
   "dependencies": {
-    "@element-plus/nuxt": "^1.0.5"
+    "@element-plus/nuxt": "^1.0.5",
+    "element-plus": "^2.3.8"
   }
 }
