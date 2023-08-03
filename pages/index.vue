@@ -41,7 +41,7 @@ const projectList = [
   },
 ];
 
-const openModal = ref<boolean>(true);
+const openModal = ref<boolean>(false);
 const handleClose = (done: () => void) => {
   ElMessageBox.confirm('Are you sure to close this dialog?')
     .then(() => {
@@ -139,7 +139,7 @@ const handleClose = (done: () => void) => {
                 </template>
                 <template #default>
                   <el-image
-                    :src="`_nuxt/assets/img${item.imageUrl}`"
+                    :src="`img${item.imageUrl}`"
                     fit="fill"
                     class="w-[400px] h-[200px]"
                   />
