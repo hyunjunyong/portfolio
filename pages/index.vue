@@ -87,108 +87,98 @@ const goDetail = (index: number) => {
 </script>
 
 <template>
-  <div class="common-layout p-10 h-screen">
+  <div class="common-layout pb-10">
     <el-container class="h-full">
-      <el-header class="flex justify-center">
-        <span class="text-2xl font-bold">Hyun's Portfolio</span>
-        <!-- 해당부분은 차후 블로그등을 만들떄 사용할 예정 -->
-        <!-- <ul>
-          <li></li>
-        </ul> -->
-      </el-header>
-      <el-divider />
-      <el-container>
-        <el-main>
-          <ul class="flex gap-5 justify-center items-center">
-            <li>
-              안녕하세요 프론트엔드 개발자 현준용입니다! 혼자하는것보단
-              여러사람과 협업하여 커뮤니케이션을 하는 것을 즐기고 어려운 문제에
-              직면해도 해결하기 위해 끊임없이 도전하는 것을 지향합니다.
-            </li>
-            <li class="w-40 h-40">
-              <img src="/img/myimage.jpg" alt="" class="w-full h-full" />
-            </li>
-          </ul>
-          <el-divider />
-          <el-table :data="tableData" stripe style="width: 100%" class="m-auto">
-            <el-table-column prop="profile" label="프로필" :min-width="30" />
-            <el-table-column prop="contact" label="contact" :min-width="70">
-              <template #default="scope">
-                <el-link
-                  v-if="tableData[scope.$index].link"
-                  :href="tableData[scope.$index].contactHref"
-                >
-                  {{ tableData[scope.$index].contact }} :
-                  {{ tableData[scope.$index].contactHref }}
-                </el-link>
-                <p v-else :href="tableData[scope.$index].contactHref">
-                  {{ tableData[scope.$index].contact }} :
-                  {{ tableData[scope.$index].contactHref }}
-                </p>
+      <el-main>
+        <ul class="flex gap-5 justify-center items-center">
+          <li>
+            안녕하세요 프론트엔드 개발자 현준용입니다! 혼자하는것보단 여러사람과
+            협업하여 커뮤니케이션을 하는 것을 즐기고 어려운 문제에 직면해도
+            해결하기 위해 끊임없이 도전하는 것을 지향합니다.
+          </li>
+          <li class="w-40 h-40">
+            <img src="/img/myimage.jpg" alt="" class="w-full h-full" />
+          </li>
+        </ul>
+        <el-divider />
+        <el-table :data="tableData" stripe style="width: 100%" class="m-auto">
+          <el-table-column prop="profile" label="프로필" :min-width="30" />
+          <el-table-column prop="contact" label="contact" :min-width="70">
+            <template #default="scope">
+              <el-link
+                v-if="tableData[scope.$index].link"
+                :href="tableData[scope.$index].contactHref"
+              >
+                {{ tableData[scope.$index].contact }} :
+                {{ tableData[scope.$index].contactHref }}
+              </el-link>
+              <p v-else :href="tableData[scope.$index].contactHref">
+                {{ tableData[scope.$index].contact }} :
+                {{ tableData[scope.$index].contactHref }}
+              </p>
+            </template>
+          </el-table-column>
+        </el-table>
+        <el-divider />
+        <ul class="grid grid-cols-3 gap-10 mt-10">
+          <li v-for="(item, index) in projectList" :key="index">
+            <el-card @click="openModal[index] = true" class="cursor-pointer">
+              <template #header>
+                {{ item.title }}
               </template>
-            </el-table-column>
-          </el-table>
-          <el-divider />
-          <ul class="grid grid-cols-3 gap-10 mt-10">
-            <li v-for="(item, index) in projectList" :key="index">
-              <el-card @click="openModal[index] = true" class="cursor-pointer">
-                <template #header>
-                  {{ item.title }}
+              <template #default>
+                <el-image
+                  :src="`img${item.imageUrl}`"
+                  fit="fill"
+                  class="w-[400px] h-[200px]"
+                />
+              </template>
+            </el-card>
+            <ClientOnly>
+              <el-dialog
+                v-model="openModal[index]"
+                :title="item.title"
+                width="40%"
+              >
+                <el-image
+                  :src="`img${item.imageUrl}`"
+                  fit="fill"
+                  class="w-[400px] h-[200px]"
+                />
+                <span>{{ item.content }}</span>
+                <template #footer>
+                  <span class="dialog-footer">
+                    <el-button @click="openModal[index] = false"
+                      >취소</el-button
+                    >
+                    <el-button type="primary" @click="router.push(item.href)">
+                      자세히 보기
+                    </el-button>
+                  </span>
                 </template>
-                <template #default>
-                  <el-image
-                    :src="`img${item.imageUrl}`"
-                    fit="fill"
-                    class="w-[400px] h-[200px]"
-                  />
-                </template>
-              </el-card>
-              <ClientOnly>
-                <el-dialog
-                  v-model="openModal[index]"
-                  :title="item.title"
-                  width="40%"
-                >
-                  <el-image
-                    :src="`img${item.imageUrl}`"
-                    fit="fill"
-                    class="w-[400px] h-[200px]"
-                  />
-                  <span>{{ item.content }}</span>
-                  <template #footer>
-                    <span class="dialog-footer">
-                      <el-button @click="openModal[index] = false"
-                        >취소</el-button
-                      >
-                      <el-button type="primary" @click="router.push(item.href)">
-                        자세히 보기
-                      </el-button>
-                    </span>
-                  </template>
-                </el-dialog>
-              </ClientOnly>
+              </el-dialog>
+            </ClientOnly>
+          </li>
+        </ul>
+        <el-divider />
+        <div class="mt-10">
+          <h3 class="text-center">Skill</h3>
+          <ul>
+            <li v-for="(item, index) in Skill" :key="item.name" class="mt-5">
+              <el-progress
+                class="max-w-[800px] m-auto"
+                :percentage="item.percentage"
+                :stroke-width="15"
+                :color="item.color"
+                striped
+                striped-flow
+                :duration="duration(item.percentage)"
+                ><span>{{ item.name }}</span></el-progress
+              >
             </li>
           </ul>
-          <el-divider />
-          <div class="mt-10">
-            <h3 class="text-center">Skill</h3>
-            <ul>
-              <li v-for="(item, index) in Skill" :key="item.name" class="mt-5">
-                <el-progress
-                  class="max-w-[800px] m-auto"
-                  :percentage="item.percentage"
-                  :stroke-width="15"
-                  :color="item.color"
-                  striped
-                  striped-flow
-                  :duration="duration(item.percentage)"
-                  ><span>{{ item.name }}</span></el-progress
-                >
-              </li>
-            </ul>
-          </div>
-        </el-main>
-      </el-container>
+        </div>
+      </el-main>
     </el-container>
   </div>
 </template>
