@@ -7,7 +7,7 @@ interface countryType {
 import { createClient } from '@supabase/supabase-js';
 
 const config = useRuntimeConfig();
-const supabase = createClient(
+const supabase = createClient<countryType[]>(
   config.public.SUPABASE_URL,
   config.public.SUPABASE_KEY
 );

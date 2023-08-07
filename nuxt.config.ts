@@ -8,7 +8,7 @@ export default defineNuxtConfig({
     '@element-plus/nuxt',
     '@nuxtjs/supabase',
   ],
-
+  css: ['@/assets/css/main.css'],
   runtimeConfig: {
     public: {
       SUPABASE_URL: process.env.SUPABASE_URL,

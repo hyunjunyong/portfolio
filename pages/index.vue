@@ -35,7 +35,7 @@ const projectList = [
     openModal: false,
     content:
       '시청자 앱은 Vue3를 웹앱으로 만들었고, 백오피스는 Nuxt2로 구성되어있습니다.',
-    href: '/project/detail/2',
+    id: 2,
   },
   {
     title: '일단떠나',
@@ -43,7 +43,7 @@ const projectList = [
     openModal: false,
     content:
       'Vue2를 사용하여 리뉴얼 제작되었으며, Jquery와 Vue가 혼용되어 있는 것을 Vue로 마이그레이션했습니다.',
-    href: '/project/detail/1',
+    id: 1,
   },
   {
     title: '큐픽',
@@ -51,14 +51,14 @@ const projectList = [
     openModal: false,
     content:
       'Html/Css로 기본 퍼블리싱 작업을 진행하였습니다. Jquery로 배너기능을 추가하였습니다.',
-    href: '/project/detail/3',
+    id: 3,
   },
   {
     title: '잇톡',
     imageUrl: '/ittok.png',
     openModal: false,
     content: 'Nuxt3를 사용해 백오피스를 구성하였습니다.',
-    href: '/project/detail/4',
+    id: 4,
   },
 ];
 
@@ -106,6 +106,7 @@ const goDetail = (index: number) => {
           <el-table-column prop="contact" label="contact" :min-width="70">
             <template #default="scope">
               <el-link
+                type="success"
                 v-if="tableData[scope.$index].link"
                 :href="tableData[scope.$index].contactHref"
               >
@@ -151,7 +152,7 @@ const goDetail = (index: number) => {
                     <el-button @click="openModal[index] = false"
                       >취소</el-button
                     >
-                    <el-button type="primary" @click="router.push(item.href)">
+                    <el-button type="primary" @click="goDetail(item.id)">
                       자세히 보기
                     </el-button>
                   </span>
