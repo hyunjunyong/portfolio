@@ -2,10 +2,10 @@
 const router = useRouter();
 
 const projectList = [
-  { title: '일단떠나', link: '/project/justgo' },
-  { title: '날방', link: '/project/nalbang' },
-  { title: '잇톡', link: '/project/ittok' },
-  { title: '큐픽', link: '/project/qpick' },
+  { title: '일단떠나', link: '/project/detail/1' },
+  { title: '날방', link: '/project/detail/2' },
+  { title: '잇톡', link: '/project/detail/4' },
+  { title: '큐픽', link: '/project/detail/3' },
 ];
 </script>
 
