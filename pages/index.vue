@@ -1,66 +1,37 @@
 <script lang="ts" setup>
+import { createClient } from '@supabase/supabase-js';
+
+const config = useRuntimeConfig();
+const supabase = createClient<Database>(
+  config.public.SUPABASE_URL,
+  config.public.SUPABASE_KEY
+);
+
+const contactInfo = ref<Database['public']['Tables']['contact_info']['Row'][]>(
+  []
+);
+const projectList = ref<Database['public']['Tables']['projectlist']['Row'][]>(
+  []
+);
+
+const getContactInfo = async () => {
+  const { data, error } = await supabase.from('contact_info').select('*');
+  if (error) {
+    throw createError({ statusMessage: error.message });
+  }
+  contactInfo.value = data;
+  console.log(data, error);
+};
+const getProjectList = async () => {
+  const { data, error } = await supabase.from('projectlist').select('*');
+  if (error) {
+    throw createError({ statusMessage: error.message });
+  }
+  contactInfo.value = data;
+  console.log(data, error);
+};
+
 const router = useRouter();
-
-const tableData = [
-  {
-    profile: '1998.01.21',
-    contact: 'Email',
-    contactHref: 'hjy123432@gmail.com',
-    link: false,
-  },
-  {
-    profile: '커넥트 웨이브 재직중(2022-02 ~)',
-    contact: 'Phone',
-    contactHref: '010-7714-4649',
-    link: false,
-  },
-  {
-    profile: '제주대학교 졸업(2022.08)',
-    contact: 'Github',
-    contactHref: 'https://github.com/hyunjunyong',
-    link: true,
-  },
-  {
-    profile: '1998.01.21',
-    contact: 'Blog',
-    contactHref: 'https://hjycoinfe.tistory.com/',
-    link: true,
-  },
-];
-
-const projectList = [
-  {
-    title: '날방',
-    imageUrl: '/nalbang.png',
-    openModal: false,
-    content:
-      '시청자 앱은 Vue3를 웹앱으로 만들었고, 백오피스는 Nuxt2로 구성되어있습니다.',
-    id: 2,
-  },
-  {
-    title: '일단떠나',
-    imageUrl: '/justgo.png',
-    openModal: false,
-    content:
-      'Vue2를 사용하여 리뉴얼 제작되었으며, Jquery와 Vue가 혼용되어 있는 것을 Vue로 마이그레이션했습니다.',
-    id: 1,
-  },
-  {
-    title: '큐픽',
-    imageUrl: '/qpick.png',
-    openModal: false,
-    content:
-      'Html/Css로 기본 퍼블리싱 작업을 진행하였습니다. Jquery로 배너기능을 추가하였습니다.',
-    id: 3,
-  },
-  {
-    title: '잇톡',
-    imageUrl: '/ittok.png',
-    openModal: false,
-    content: 'Nuxt3를 사용해 백오피스를 구성하였습니다.',
-    id: 4,
-  },
-];
 
 const openModal = ref<boolean[]>([false, false, false, false]);
 
@@ -84,6 +55,11 @@ const goDetail = (index: number) => {
 //   if (percentage >= 20) return '#fcd34d';
 //   if (percentage < 20) return '#fda4af';
 // };
+
+onMounted(() => {
+  getContactInfo();
+  getProjectList();
+});
 </script>
 
 <template>
@@ -101,21 +77,21 @@ const goDetail = (index: number) => {
           </li>
         </ul>
         <el-divider />
-        <el-table :data="tableData" stripe style="width: 100%" class="m-auto">
+        <el-table :data="contactInfo" stripe style="width: 100%" class="m-auto">
           <el-table-column prop="profile" label="프로필" :min-width="30" />
           <el-table-column prop="contact" label="contact" :min-width="70">
             <template #default="scope">
               <el-link
                 type="success"
-                v-if="tableData[scope.$index].link"
-                :href="tableData[scope.$index].contactHref"
+                v-if="contactInfo[scope.$index].contact_link"
+                :href="contactInfo[scope.$index].contact_link"
               >
-                {{ tableData[scope.$index].contact }} :
-                {{ tableData[scope.$index].contactHref }}
+                {{ contactInfo[scope.$index].contact }} :
+                {{ contactInfo[scope.$index].contact_link }}
               </el-link>
-              <p v-else :href="tableData[scope.$index].contactHref">
-                {{ tableData[scope.$index].contact }} :
-                {{ tableData[scope.$index].contactHref }}
+              <p v-else>
+                {{ contactInfo[scope.$index].contact }} :
+                {{ contactInfo[scope.$index].contact_address }}
               </p>
             </template>
           </el-table-column>

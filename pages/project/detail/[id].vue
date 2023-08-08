@@ -1,25 +1,24 @@
 <script setup lang="ts">
-interface projectType {
-  content: string;
-  end_date?: string;
-  start_date: string;
-  name: string;
-  id: number;
-  url?: string;
-}
-
 import { createClient } from '@supabase/supabase-js';
+import { ElLoading } from 'element-plus';
+
 const route = useRoute();
 const config = useRuntimeConfig();
 
-const projectData = ref<projectType>();
+const projectData = ref<Database['public']['Tables']['projectDetail']['Row']>();
 
-const supabase = createClient<projectType>(
+const supabase = createClient<Database>(
   config.public.SUPABASE_URL,
   config.public.SUPABASE_KEY
 );
 
 const getData = async () => {
+  const loading = ElLoading.service({
+    lock: true,
+    text: 'Loading',
+    background: 'rgba(0, 0, 0, 0.7)',
+  });
+
   const { data, error } = await supabase
     .from('projectDetail')
     .select('*')
@@ -31,6 +30,10 @@ const getData = async () => {
   }
 
   projectData.value = data;
+  setTimeout(() => {
+    loading.close();
+  }, 1000);
+  // loading.close();
   console.log(data, error);
 };
 
@@ -46,7 +49,7 @@ onMounted(() => {
         <span class="text-2xl font-bold">{{ projectData?.name }}</span>
       </el-header>
       <el-main class="m-auto">
-        <ul class="list-disct">
+        <ul class="list-disc">
           <li>
             기간 : {{ projectData?.start_date }} ~
             {{ projectData?.end_date || '진행중' }}
