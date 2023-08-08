@@ -28,6 +28,14 @@ interface Database {
           content: string;
         };
       };
+      skillInfo: {
+        Row: {
+          id: number;
+          name: string;
+          percentage: number;
+          color: string;
+        };
+      };
     };
   };
 }

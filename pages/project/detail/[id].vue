@@ -1,17 +1,9 @@
 <script setup lang="ts">
-import { createClient } from '@supabase/supabase-js';
 import { ElLoading } from 'element-plus';
-import { id } from 'element-plus/es/locale';
 
 const route = useRoute();
-const config = useRuntimeConfig();
 
 const projectData = ref<Database['public']['Tables']['projectDetail']['Row']>();
-
-const supabase = createClient<Database>(
-  config.public.SUPABASE_URL,
-  config.public.SUPABASE_KEY
-);
 
 const getData = async () => {
   const loading = ElLoading.service({
@@ -19,33 +11,17 @@ const getData = async () => {
     text: 'Loading',
     background: 'rgba(0, 0, 0, 0.7)',
   });
-
-  const { data, error } = await supabase
-    .from('projectDetail')
-    .select('*')
-    .eq('id', route.params.id)
-    .single();
-
-  if (error) {
-    throw createError({ statusMessage: error.message });
-  }
-
+  const data = await $fetch('/api/projectList', {
+    query: { id: route.params.id },
+  });
   projectData.value = data;
   setTimeout(() => {
     loading.close();
   }, 1000);
-  // loading.close();
-  console.log(data, error);
-};
-const fetchLibrary = async () => {
-  const data = await $fetch('/api/projectList', {
-    query: { id: route.params.id },
-  });
   console.log(data);
 };
 onMounted(() => {
   getData();
-  fetchLibrary();
 });
 </script>
 

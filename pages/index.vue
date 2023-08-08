@@ -1,47 +1,30 @@
 <script lang="ts" setup>
-import { createClient } from '@supabase/supabase-js';
-
-const config = useRuntimeConfig();
-const supabase = createClient<Database>(
-  config.public.SUPABASE_URL,
-  config.public.SUPABASE_KEY
-);
-
+const router = useRouter();
 const contactInfo = ref<Database['public']['Tables']['contact_info']['Row'][]>(
   []
 );
 const projectList = ref<Database['public']['Tables']['projectlist']['Row'][]>(
   []
 );
+const Skill = ref<Database['public']['Tables']['skillInfo']['Row'][]>([]);
 
 const getContactInfo = async () => {
-  const { data, error } = await supabase.from('contact_info').select('*');
-  if (error) {
-    throw createError({ statusMessage: error.message });
-  }
+  const data = await $fetch('/api/contactInfo');
   contactInfo.value = data;
-  console.log(data, error);
+  console.log(data);
 };
 const getProjectList = async () => {
-  const { data, error } = await supabase.from('projectlist').select('*');
-  if (error) {
-    throw createError({ statusMessage: error.message });
-  }
+  const data = await $fetch('/api/projectDetail');
   projectList.value = data;
-  console.log(data, error);
+  console.log(data);
+};
+const getSkillInfo = async () => {
+  const data = await $fetch('/api/skillInfo');
+  Skill.value = data;
+  console.log(data);
 };
 
-const router = useRouter();
-
 const openModal = ref<boolean[]>([false, false, false, false]);
-
-const Skill = [
-  { name: 'Nuxt3', percentage: 70, color: '#34d399' },
-  { name: 'Nuxt2', percentage: 60, color: '#38bdf8' },
-  { name: 'Vue2,3', percentage: 70, color: '#a78bfa' },
-  { name: 'JavaScript', percentage: 80, color: '#fbbf24' },
-  { name: 'TypeScript', percentage: 50, color: '#fb7185' },
-];
 
 const duration = (percentage: number) => Math.floor(percentage / 5);
 
@@ -59,6 +42,7 @@ const goDetail = (index: number) => {
 onMounted(() => {
   getContactInfo();
   getProjectList();
+  getSkillInfo();
 });
 </script>
 
@@ -67,11 +51,7 @@ onMounted(() => {
     <el-container class="h-full">
       <el-main>
         <ul class="flex gap-5 justify-center items-center">
-          <li>
-            안녕하세요 프론트엔드 개발자 현준용입니다! 혼자하는것보단 여러사람과
-            협업하여 커뮤니케이션을 하는 것을 즐기고 어려운 문제에 직면해도
-            해결하기 위해 끊임없이 도전하는 것을 지향합니다.
-          </li>
+          <li>프론트엔드 개발자 현준용 입니다!</li>
           <li class="w-40 h-40">
             <img src="/img/myimage.jpg" alt="" class="w-full h-full" />
           </li>
@@ -97,8 +77,8 @@ onMounted(() => {
           </el-table-column>
         </el-table>
         <el-divider />
-        <ul class="grid grid-cols-3 gap-10 mt-10">
-          <li v-for="(item, index) in projectList" :key="index">
+        <el-carousel class="mt-10" :autoplay="false" type="card" height="400px">
+          <el-carousel-item v-for="(item, index) in projectList" :key="index">
             <el-card @click="openModal[index] = true" class="cursor-pointer">
               <template #header>
                 {{ item.title }}
@@ -107,22 +87,18 @@ onMounted(() => {
                 <el-image
                   :src="`img${item.imageUrl}`"
                   fit="fill"
-                  class="w-[400px] h-[200px]"
+                  class="w-full h-[300px]"
                 />
               </template>
             </el-card>
             <ClientOnly>
               <el-dialog
+                :lock-scroll="false"
                 v-model="openModal[index]"
                 :title="item.title"
-                width="40%"
+                width="50%"
               >
-                <el-image
-                  :src="`img${item.imageUrl}`"
-                  fit="fill"
-                  class="w-[400px] h-[200px]"
-                />
-                <span>{{ item.content }}</span>
+                <span class="mt-5">{{ item.content }}</span>
                 <template #footer>
                   <span class="dialog-footer">
                     <el-button @click="openModal[index] = false"
@@ -135,11 +111,18 @@ onMounted(() => {
                 </template>
               </el-dialog>
             </ClientOnly>
-          </li>
-        </ul>
+          </el-carousel-item>
+        </el-carousel>
         <el-divider />
         <div class="mt-10">
-          <h3 class="text-center">Skill</h3>
+          <div class="flex items-center justify-center gap-5">
+            <h3
+              class="text-center underline underline-offset-1 font-bold text-4xl text-cyan-500"
+            >
+              Skill
+            </h3>
+            <img src="/img/vue.gif" alt="" class="w-[250px] h-[200px]" />
+          </div>
           <ul>
             <li v-for="(item, index) in Skill" :key="item.name" class="mt-5">
               <el-progress
