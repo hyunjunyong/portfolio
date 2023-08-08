@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { createClient } from '@supabase/supabase-js';
 import { ElLoading } from 'element-plus';
+import { id } from 'element-plus/es/locale';
 
 const route = useRoute();
 const config = useRuntimeConfig();
@@ -36,9 +37,15 @@ const getData = async () => {
   // loading.close();
   console.log(data, error);
 };
-
+const fetchLibrary = async () => {
+  const data = await $fetch('/api/projectList', {
+    query: { id: route.params.id },
+  });
+  console.log(data);
+};
 onMounted(() => {
   getData();
+  fetchLibrary();
 });
 </script>
 

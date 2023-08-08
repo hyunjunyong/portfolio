@@ -27,7 +27,7 @@ const getProjectList = async () => {
   if (error) {
     throw createError({ statusMessage: error.message });
   }
-  contactInfo.value = data;
+  projectList.value = data;
   console.log(data, error);
 };
 
