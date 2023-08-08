@@ -11,7 +11,7 @@ const getData = async () => {
     text: 'Loading',
     background: 'rgba(0, 0, 0, 0.7)',
   });
-  const data = await $fetch('/api/projectList', {
+  const data = await $fetch('/api/projectDetail', {
     query: { id: route.params.id },
   });
   projectData.value = data;

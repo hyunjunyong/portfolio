@@ -3,6 +3,7 @@ const router = useRouter();
 </script>
 
 <template>
+  <!-- <div class="pt-10 px-10 bg-gray-200"> -->
   <div class="pt-10 px-10">
     <el-header class="flex justify-between">
       <el-link type="success" @click="router.push('/')"

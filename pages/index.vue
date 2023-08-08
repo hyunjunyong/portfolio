@@ -14,7 +14,7 @@ const getContactInfo = async () => {
   console.log(data);
 };
 const getProjectList = async () => {
-  const data = await $fetch('/api/projectDetail');
+  const data = await $fetch('/api/projectList');
   projectList.value = data;
   console.log(data);
 };
@@ -113,7 +113,7 @@ onMounted(() => {
             </ClientOnly>
           </el-carousel-item>
         </el-carousel>
-        <el-divider />
+        <el-divider class="border-red-600" />
         <div class="mt-10">
           <div class="flex items-center justify-center gap-5">
             <h3
