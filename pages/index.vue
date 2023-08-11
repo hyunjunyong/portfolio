@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import type { CarouselProps } from 'element-plus/es/components/carousel/src/carousel';
+
 const router = useRouter();
 const contactInfo = ref<Database['public']['Tables']['contact_info']['Row'][]>(
   []
@@ -39,10 +41,15 @@ const goDetail = (index: number) => {
 //   if (percentage < 20) return '#fda4af';
 // };
 
+const responsiveCard = ref<CarouselProps['type']>('card');
+
 onMounted(() => {
   getContactInfo();
   getProjectList();
   getSkillInfo();
+  window.innerWidth >= 568
+    ? (responsiveCard.value = 'card')
+    : (responsiveCard.value = '');
 });
 </script>
 
@@ -51,7 +58,7 @@ onMounted(() => {
     <el-container class="h-full">
       <el-main>
         <ul class="flex gap-5 justify-center items-center">
-          <li>프론트엔드 개발자 현준용 입니다!</li>
+          <li>프론트엔드 개발자 현준용 입니다!(추가로 뭐더 적을예정)</li>
           <li class="w-40 h-40">
             <img src="/img/myimage.jpg" alt="" class="w-full h-full" />
           </li>
@@ -77,7 +84,12 @@ onMounted(() => {
           </el-table-column>
         </el-table>
         <el-divider />
-        <el-carousel class="mt-10" :autoplay="false" type="card" height="400px">
+        <el-carousel
+          class="mt-10"
+          :autoplay="false"
+          :type="responsiveCard"
+          height="400px"
+        >
           <el-carousel-item v-for="(item, index) in projectList" :key="index">
             <el-card @click="openModal[index] = true" class="cursor-pointer">
               <template #header>

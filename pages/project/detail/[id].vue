@@ -5,23 +5,27 @@ const route = useRoute();
 
 const projectData = ref<Database['public']['Tables']['projectDetail']['Row']>();
 
-const getData = async () => {
+const getProjectDetail = async () => {
   const loading = ElLoading.service({
     lock: true,
     text: 'Loading',
     background: 'rgba(0, 0, 0, 0.7)',
   });
-  const data = await $fetch('/api/projectDetail', {
-    query: { id: route.params.id },
-  });
-  projectData.value = data;
-  setTimeout(() => {
+  try {
+    const { data } = await useFetch('/api/projectDetail', {
+      query: { id: route.params.id },
+    });
+    console.log(data.value);
+    projectData.value = data.value;
+  } finally {
     loading.close();
-  }, 1000);
-  console.log(data);
+  }
+  // setTimeout(() => {
+
+  // }, 1000);
 };
 onMounted(() => {
-  getData();
+  getProjectDetail();
 });
 </script>
 

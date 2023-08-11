@@ -9,7 +9,6 @@ export default defineEventHandler(async (event) => {
     .select('*')
     .eq('id', query)
     .single();
-
   if (error) {
     throw createError({ statusMessage: error.message });
   }
