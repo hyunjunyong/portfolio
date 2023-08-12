@@ -1,65 +1,16 @@
-## url : https://portfolio-hyunjunyong.vercel.app/
+# 포트폴리오
 
-# Nuxt 3 Minimal Starter
+## URL : https://portfolio-hyunjunyong.vercel.app/
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Nuxt3로 제작되었으며 vercel로 배포했습니다.
 
-## Setup
+## 사용된 라이브러리
 
-Make sure to install the dependencies:
-
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
 ```
+1. Nuxt3
+2. element-plus
+3. tailwind
+4. supabase
+5. pinia(아직 미사용)
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
 ```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
