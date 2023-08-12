@@ -7,7 +7,9 @@ const router = useRouter();
   <div class="p-10 xs:p-5">
     <el-header class="flex justify-between">
       <el-link type="success" @click="router.push('/')"
-        ><span class="text-2xl font-bold">Hyun's Portfolio</span></el-link
+        ><span class="text-2xl font-bold xs:text-xl xs:font-semibold"
+          >Hyun's Portfolio</span
+        ></el-link
       >
 
       <ul class="flex gap-3 items-center justify-center">
@@ -16,6 +18,7 @@ const router = useRouter();
             >Home</el-link
           >
         </li>
+
         <li>
           <el-link
             type="success"

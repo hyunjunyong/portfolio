@@ -68,13 +68,26 @@ onMounted(() => {
           <el-table-column prop="profile" label="프로필" :min-width="30" />
           <el-table-column prop="contact" label="contact" :min-width="70">
             <template #default="scope">
+              <span class="mx-1" v-if="contactInfo[scope.$index].contact_link"
+                >{{ contactInfo[scope.$index].contact }} :</span
+              >
               <el-link
                 type="success"
                 v-if="contactInfo[scope.$index].contact_link"
                 :href="contactInfo[scope.$index].contact_link"
               >
-                {{ contactInfo[scope.$index].contact }} :
-                {{ contactInfo[scope.$index].contact_link }}
+                <el-image
+                  class="w-10 h-10"
+                  v-if="contactInfo[scope.$index].contact === 'Github'"
+                  src="/img/github.png"
+                  alt=""
+                />
+                <el-image
+                  class="w-10 h-10"
+                  v-if="contactInfo[scope.$index].contact === 'Blog'"
+                  src="/img/tistory.png"
+                  alt=""
+                />
               </el-link>
               <p v-else>
                 {{ contactInfo[scope.$index].contact }} :
@@ -98,7 +111,7 @@ onMounted(() => {
               <template #default>
                 <el-image
                   :src="`img${item.imageUrl}`"
-                  fit="fill"
+                  fit="contain"
                   class="w-full h-[300px]"
                 />
               </template>
@@ -129,11 +142,15 @@ onMounted(() => {
         <div class="mt-10">
           <div class="flex items-center justify-center gap-5">
             <h3
-              class="text-center underline underline-offset-1 font-bold text-4xl text-cyan-500"
+              class="text-center underline underline-offset-1 font-bold text-4xl text-cyan-500 xs:text-2xl xs:font-semibold"
             >
               Skill
             </h3>
-            <img src="/img/vue.gif" alt="" class="w-[250px] h-[200px]" />
+            <img
+              src="/img/vue.gif"
+              alt=""
+              class="w-[250px] h-[200px] xs:w-[200px] xs:h-40"
+            />
           </div>
           <ul>
             <li v-for="(item, index) in Skill" :key="item.name" class="mt-5">
