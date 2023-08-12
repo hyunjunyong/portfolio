@@ -4,7 +4,7 @@ const router = useRouter();
 
 <template>
   <!-- <div class="pt-10 px-10 bg-gray-200"> -->
-  <div class="pt-10 px-10">
+  <div class="p-10 xs:p-5">
     <el-header class="flex justify-between">
       <el-link type="success" @click="router.push('/')"
         ><span class="text-2xl font-bold">Hyun's Portfolio</span></el-link

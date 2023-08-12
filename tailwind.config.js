@@ -1,3 +1,5 @@
+import screen from './assets/css/presets/screen';
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -10,5 +12,6 @@ module.exports = {
   theme: {
     extend: {},
   },
+  presets: [screen],
   plugins: [],
 };

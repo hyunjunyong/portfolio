@@ -12,17 +12,16 @@ const getProjectDetail = async () => {
     background: 'rgba(0, 0, 0, 0.7)',
   });
   try {
-    const { data } = await useFetch('/api/projectDetail', {
+    const { data } = await useFetch<
+      Database['public']['Tables']['projectDetail']['Row']
+    >('/api/projectDetail', {
       query: { id: route.params.id },
     });
-    console.log(data.value);
     projectData.value = data.value;
+    console.log(data);
   } finally {
     loading.close();
   }
-  // setTimeout(() => {
-
-  // }, 1000);
 };
 onMounted(() => {
   getProjectDetail();

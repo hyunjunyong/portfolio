@@ -47,7 +47,7 @@ onMounted(() => {
   getContactInfo();
   getProjectList();
   getSkillInfo();
-  window.innerWidth >= 568
+  window.innerWidth >= 640
     ? (responsiveCard.value = 'card')
     : (responsiveCard.value = '');
 });
