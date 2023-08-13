@@ -1,7 +1,4 @@
 <script lang="ts" setup>
-import type { CarouselProps } from 'element-plus/es/components/carousel/src/carousel';
-
-const router = useRouter();
 const contactInfo = ref<Database['public']['Tables']['contact_info']['Row'][]>(
   []
 );
@@ -26,13 +23,8 @@ const getSkillInfo = async () => {
   console.log(data);
 };
 
-const openModal = ref<boolean[]>([false, false, false, false]);
-
 const duration = (percentage: number) => Math.floor(percentage / 5);
 
-const goDetail = (index: number) => {
-  router.push(`/project/detail/${index}`);
-};
 // const progressColor = (percentage: number) => {
 //   if (percentage >= 80) return '#a7f3d0';
 //   if (percentage >= 60) return '#7dd3fc';
@@ -41,15 +33,10 @@ const goDetail = (index: number) => {
 //   if (percentage < 20) return '#fda4af';
 // };
 
-const responsiveCard = ref<CarouselProps['type']>('card');
-
 onMounted(() => {
   getContactInfo();
   getProjectList();
   getSkillInfo();
-  window.innerWidth >= 640
-    ? (responsiveCard.value = 'card')
-    : (responsiveCard.value = '');
 });
 </script>
 
@@ -59,12 +46,24 @@ onMounted(() => {
       <el-main>
         <ul class="flex gap-5 justify-center items-center">
           <li>프론트엔드 개발자 현준용 입니다!(추가로 뭐더 적을예정)</li>
-          <li class="w-40 h-40">
-            <img src="/img/myimage.jpg" alt="" class="w-full h-full" />
+          <!-- <li class="w-40 h-40"> -->
+          <li class="w-40">
+            <el-image
+              fill="contain"
+              src="/img/myimage.jpg"
+              alt=""
+              class="w-full h-full"
+            />
           </li>
         </ul>
         <el-divider />
-        <el-table :data="contactInfo" stripe style="width: 100%" class="m-auto">
+        <el-table
+          :data="contactInfo"
+          stripe
+          border
+          style="width: 100%"
+          class="m-auto"
+        >
           <el-table-column prop="profile" label="프로필" :min-width="30" />
           <el-table-column prop="contact" label="contact" :min-width="70">
             <template #default="scope">
@@ -97,48 +96,10 @@ onMounted(() => {
           </el-table-column>
         </el-table>
         <el-divider />
-        <el-carousel
-          class="mt-10"
-          :autoplay="false"
-          :type="responsiveCard"
-          height="400px"
-        >
-          <el-carousel-item v-for="(item, index) in projectList" :key="index">
-            <el-card @click="openModal[index] = true" class="cursor-pointer">
-              <template #header>
-                {{ item.title }}
-              </template>
-              <template #default>
-                <el-image
-                  :src="`img${item.imageUrl}`"
-                  fit="contain"
-                  class="w-full h-[300px]"
-                />
-              </template>
-            </el-card>
-            <ClientOnly>
-              <el-dialog
-                :lock-scroll="false"
-                v-model="openModal[index]"
-                :title="item.title"
-                width="50%"
-              >
-                <span class="mt-5">{{ item.content }}</span>
-                <template #footer>
-                  <span class="dialog-footer">
-                    <el-button @click="openModal[index] = false"
-                      >취소</el-button
-                    >
-                    <el-button type="primary" @click="goDetail(item.id)">
-                      자세히 보기
-                    </el-button>
-                  </span>
-                </template>
-              </el-dialog>
-            </ClientOnly>
-          </el-carousel-item>
-        </el-carousel>
+        <ProjectCompany :projectList="projectList" />
         <el-divider class="border-red-600" />
+        <ProjectPersonal />
+        <el-divider />
         <div class="mt-10">
           <div class="flex items-center justify-center gap-5">
             <h3
@@ -156,13 +117,16 @@ onMounted(() => {
             <li v-for="(item, index) in Skill" :key="item.name" class="mt-5">
               <el-progress
                 class="max-w-[800px] m-auto"
+                :text-inside="true"
                 :percentage="item.percentage"
-                :stroke-width="15"
+                :stroke-width="20"
                 :color="item.color"
                 striped
                 striped-flow
                 :duration="duration(item.percentage)"
-                ><span>{{ item.name }}</span></el-progress
+                ><span class="xs:text-sm"
+                  >{{ item.name }}:{{ item.percentage }}%</span
+                ></el-progress
               >
             </li>
           </ul>
