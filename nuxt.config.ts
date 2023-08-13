@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     '@pinia-plugin-persistedstate/nuxt',
     '@element-plus/nuxt',
     '@nuxtjs/supabase',
+    '@vueuse/nuxt',
   ],
   css: ['@/assets/css/main.css'],
   runtimeConfig: {

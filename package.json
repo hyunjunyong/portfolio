@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@element-plus/nuxt": "^1.0.5",
+    "@vueuse/nuxt": "^10.3.0",
     "element-plus": "^2.3.8"
   }
 }

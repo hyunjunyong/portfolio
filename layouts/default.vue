@@ -1,5 +1,9 @@
 <script lang="ts" setup>
 const router = useRouter();
+import { useDark, useToggle } from '@vueuse/core';
+
+const isDark = useDark();
+const toggleDark = useToggle(isDark);
 </script>
 
 <template>
@@ -26,6 +30,14 @@ const router = useRouter();
             class="text-xl"
             >Project</el-link
           >
+        </li>
+        <li>
+          <ClientOnly>
+            <button @click="toggleDark()">
+              <i inline-block align-middle i="dark:carbon-moon carbon-sun" />
+              <span class="ml-2">{{ isDark ? 'Dark' : 'Light' }}</span>
+            </button>
+          </ClientOnly>
         </li>
       </ul>
     </el-header>

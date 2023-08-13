@@ -7,7 +7,7 @@
     </p>
     <el-card class="box-card mt-5">
       <template #header>
-        <div class="card-header">
+        <div class="font-bold">
           <p>웹툰 사이트</p>
         </div>
       </template>
@@ -35,7 +35,7 @@
     </el-card>
     <el-card class="box-card mt-5">
       <template #header>
-        <div class="card-header">
+        <div class="font-bold">
           <p>중간거리 약속잡기(혼디모앙)</p>
         </div>
       </template>
@@ -70,7 +70,7 @@
     </el-card>
     <el-card class="box-card mt-5">
       <template #header>
-        <div class="card-header">
+        <div class="font-bold">
           <p>제주대학교 소개 웹사이트</p>
         </div>
       </template>
@@ -99,13 +99,4 @@
   </div>
 </template>
 
-<style scoped>
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-@layer components {
-  .card-header {
-    @apply font-bold;
-  }
-}
-</style>
+<style scoped></style>

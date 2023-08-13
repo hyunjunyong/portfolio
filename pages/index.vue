@@ -45,7 +45,12 @@ onMounted(() => {
     <el-container class="h-full">
       <el-main>
         <ul class="flex gap-5 justify-center items-center">
-          <li>프론트엔드 개발자 현준용 입니다!(추가로 뭐더 적을예정)</li>
+          <li class="w-2/5">
+            <el-card
+              >프론트엔드 개발자 현준용 입니다! 새로운 기술을 찾는 것을 좋아하고
+              항상 어떤 기술이 잘 어울리는지 고민합니다.</el-card
+            >
+          </li>
           <!-- <li class="w-40 h-40"> -->
           <li class="w-40">
             <el-image
@@ -67,8 +72,10 @@ onMounted(() => {
           <el-table-column prop="profile" label="프로필" :min-width="30" />
           <el-table-column prop="contact" label="contact" :min-width="70">
             <template #default="scope">
-              <span class="mx-1" v-if="contactInfo[scope.$index].contact_link"
-                >{{ contactInfo[scope.$index].contact }} :</span
+              <span
+                class="mx-1"
+                v-if="contactInfo[scope.$index].contact_link"
+                >{{ contactInfo[scope.$index].contact }}</span
               >
               <el-link
                 type="success"
@@ -76,13 +83,13 @@ onMounted(() => {
                 :href="contactInfo[scope.$index].contact_link"
               >
                 <el-image
-                  class="w-10 h-10"
+                  class="w-8 h-8"
                   v-if="contactInfo[scope.$index].contact === 'Github'"
                   src="/img/github.png"
                   alt=""
                 />
                 <el-image
-                  class="w-10 h-10"
+                  class="w-8 h-8"
                   v-if="contactInfo[scope.$index].contact === 'Blog'"
                   src="/img/tistory.png"
                   alt=""

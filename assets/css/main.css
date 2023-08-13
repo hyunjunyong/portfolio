@@ -5,5 +5,11 @@
 @layer components {
   .el-link {
     @apply text-base !important;
-  }
+  } 
+}
+
+html.dark {
+  /* custom dark bg color */
+  --el-bg-color: #626aef;
+  color: var(--text-color);
 }
