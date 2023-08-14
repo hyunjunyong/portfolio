@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useDarkStore } from '@/store/dark';
+import { Right } from '@element-plus/icons-vue';
 const store = useDarkStore();
 
 const contactInfo = ref<Database['public']['Tables']['contact_info']['Row'][]>(
@@ -26,8 +26,6 @@ const getSkillInfo = async () => {
   console.log(data);
 };
 
-const duration = (percentage: number) => Math.floor(percentage / 5);
-
 // const progressColor = (percentage: number) => {
 //   if (percentage >= 80) return '#a7f3d0';
 //   if (percentage >= 60) return '#7dd3fc';
@@ -35,6 +33,10 @@ const duration = (percentage: number) => Math.floor(percentage / 5);
 //   if (percentage >= 20) return '#fcd34d';
 //   if (percentage < 20) return '#fda4af';
 // };
+
+const iconColorMode = computed(() => {
+  return store.isDark ? 'white' : 'black';
+});
 
 onMounted(() => {
   getContactInfo();
@@ -73,39 +75,28 @@ onMounted(() => {
             class="m-auto"
           >
             <el-table-column prop="profile" label="프로필" :min-width="30" />
-            <el-table-column prop="contact" label="contact" :min-width="70">
+            <el-table-column prop="contact" label="contact" :min-width="50">
               <template #default="scope">
                 <span
-                  class="mx-1"
                   v-if="contactInfo[scope.$index].contact_link"
-                  >{{ contactInfo[scope.$index].contact }}</span
-                >
+                  class="inline-flex items-center gap-1 mr-1"
+                  >{{ contactInfo[scope.$index].contact }}
+                  <el-icon :color="iconColorMode" :size="16"><Right /></el-icon>
+                </span>
                 <el-link
                   type="success"
                   v-if="contactInfo[scope.$index].contact_link"
                   :href="contactInfo[scope.$index].contact_link"
                 >
-                  <el-image
-                    class="w-8 h-8"
-                    v-if="
-                      contactInfo[scope.$index].contact === 'Github' &&
-                      !store.isDark
-                    "
-                    src="/img/github.png"
-                    alt=""
-                  />
                   <Icon
-                    v-if="
-                      contactInfo[scope.$index].contact === 'Github' &&
-                      store.isDark
-                    "
+                    v-if="contactInfo[scope.$index].contact === 'Github'"
                     name="uil:github"
-                    color="white"
-                    class="w-8 h-8"
+                    :color="iconColorMode"
+                    class="w-6 h-6"
                   />
 
                   <el-image
-                    class="w-8 h-8"
+                    class="w-6 h-6"
                     v-if="contactInfo[scope.$index].contact === 'Blog'"
                     src="/img/tistory.png"
                     alt=""
@@ -137,23 +128,7 @@ onMounted(() => {
               class="w-[250px] h-[200px] xs:w-[200px] xs:h-40"
             />
           </div>
-          <ul>
-            <li v-for="(item, index) in Skill" :key="item.name" class="mt-5">
-              <el-progress
-                class="max-w-[800px] m-auto"
-                :text-inside="true"
-                :percentage="item.percentage"
-                :stroke-width="20"
-                :color="item.color"
-                striped
-                striped-flow
-                :duration="duration(item.percentage)"
-                ><span class="xs:text-sm"
-                  >{{ item.name }}:{{ item.percentage }}%</span
-                ></el-progress
-              >
-            </li>
-          </ul>
+          <SkillProgress :Skill="Skill" />
         </div>
       </el-main>
     </el-container>

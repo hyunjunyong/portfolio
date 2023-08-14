@@ -27,4 +27,7 @@ export default defineNuxtConfig({
       ['defineStore', 'definePiniaStore'], // import { defineStore as definePiniaStore } from 'pinia'
     ],
   },
+  imports: {
+    dirs: ['store'],
+  },
 });

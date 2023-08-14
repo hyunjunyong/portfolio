@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { Sunny, Moon } from '@element-plus/icons-vue';
-import { useDarkStore } from '@/store/dark';
+
 const store = useDarkStore();
 const isDark = useDark();
 watch(isDark, (newValue) => {

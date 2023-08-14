@@ -19,5 +19,21 @@ html.dark .el-table{
   --el-table-header-text-color:#CFD3DC;
 }  
 
+html.dark .el-dialog{
+  --el-dialog-bg-color: #1D1D1D;
+  color:#CFD3DC;
+}
+
+html.dark .el-button{
+  --el-button-bg-color: #1D1D1D;
+}
+html.dark .el-button+.el-button{
+  --el-button-bg-color: #409eff;
+}
+
+html.dark .el-dialog__body,.el-dialog__title,.el-button{
+  color:#CFD3DC !important;
+}
+
 
 
