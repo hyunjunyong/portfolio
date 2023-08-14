@@ -1,13 +1,11 @@
 <script lang="ts" setup>
-const router = useRouter();
-import { useDark, useToggle } from '@vueuse/core';
+import { Sunny, Moon } from '@element-plus/icons-vue';
 
+const router = useRouter();
 const isDark = useDark();
-const toggleDark = useToggle(isDark);
 </script>
 
 <template>
-  <!-- <div class="pt-10 px-10 bg-gray-200"> -->
   <div class="p-10 xs:p-5">
     <el-header class="flex justify-between">
       <el-link type="success" @click="router.push('/')"
@@ -32,12 +30,17 @@ const toggleDark = useToggle(isDark);
           >
         </li>
         <li>
-          <ClientOnly>
-            <button @click="toggleDark()">
-              <i inline-block align-middle i="dark:carbon-moon carbon-sun" />
-              <span class="ml-2">{{ isDark ? 'Dark' : 'Light' }}</span>
-            </button>
-          </ClientOnly>
+          <el-switch
+            v-model="isDark"
+            class="ml-2"
+            width="40"
+            style="
+              --el-switch-on-color: #333333;
+              --el-switch-off-color: #bebebe;
+            "
+            :active-action-icon="Moon"
+            :inactive-action-icon="Sunny"
+          />
         </li>
       </ul>
     </el-header>

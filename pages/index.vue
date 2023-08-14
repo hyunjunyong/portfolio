@@ -46,20 +46,20 @@ onMounted(() => {
       <el-main>
         <ul class="flex gap-5 justify-center items-center">
           <li class="w-2/5">
-            <el-card
+            <el-card class="box-card"
               >프론트엔드 개발자 현준용 입니다! 새로운 기술을 찾는 것을 좋아하고
               항상 어떤 기술이 잘 어울리는지 고민합니다.</el-card
             >
           </li>
           <!-- <li class="w-40 h-40"> -->
-          <li class="w-40">
+          <!-- <li class="w-40">
             <el-image
               fill="contain"
               src="/img/myimage.jpg"
               alt=""
               class="w-full h-full"
             />
-          </li>
+          </li> -->
         </ul>
         <el-divider />
         <el-table

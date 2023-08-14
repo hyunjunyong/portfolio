@@ -1,15 +1,15 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-@layer components {
-  .el-link {
-    @apply text-base !important;
-  } 
-}
 
 html.dark {
-  /* custom dark bg color */
-  --el-bg-color: #626aef;
-  color: var(--text-color);
-}
+  @apply bg-black text-white
+}  
+html.dark .box-card{
+  background-color: #1d1e1f;
+  color:white;
+}  
+
+
+

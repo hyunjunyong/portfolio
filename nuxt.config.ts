@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     '@element-plus/nuxt',
     '@nuxtjs/supabase',
     '@vueuse/nuxt',
+    'nuxt-icon',
   ],
   css: ['@/assets/css/main.css'],
   runtimeConfig: {
