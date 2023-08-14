@@ -11,6 +11,7 @@
 2. element-plus
 3. tailwind
 4. supabase
-5. pinia(아직 미사용)
+5. vueuse
+6. pinia
 
 ```

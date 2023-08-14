@@ -8,7 +8,15 @@ html.dark {
 }  
 html.dark .box-card{
   background-color: #1d1e1f;
-  color:white;
+  color:#CFD3DC;
+}  
+html.dark .el-table{
+  --el-table-header-bg-color:#1D1D1D;
+  --el-table-tr-bg-color:#1D1D1D;
+  --el-table-row-hover-bg-color:#1D1D1D;
+  background-color: #1D1D1D;
+  color:#CFD3DC;
+  --el-table-header-text-color:#CFD3DC;
 }  
 
 

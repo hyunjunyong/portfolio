@@ -3,7 +3,10 @@ import { Sunny, Moon } from '@element-plus/icons-vue';
 import { useDarkStore } from '@/store/dark';
 const store = useDarkStore();
 const isDark = useDark();
-console.log(isDark.value);
+watch(isDark, (newValue) => {
+  console.log(newValue);
+  store.isDark = newValue;
+});
 </script>
 
 <template>

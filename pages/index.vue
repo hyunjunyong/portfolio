@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+import { useDarkStore } from '@/store/dark';
+const store = useDarkStore();
+
 const contactInfo = ref<Database['public']['Tables']['contact_info']['Row'][]>(
   []
 );
@@ -62,46 +65,60 @@ onMounted(() => {
           </li> -->
         </ul>
         <el-divider />
-        <el-table
-          :data="contactInfo"
-          stripe
-          border
-          style="width: 100%"
-          class="m-auto"
-        >
-          <el-table-column prop="profile" label="프로필" :min-width="30" />
-          <el-table-column prop="contact" label="contact" :min-width="70">
-            <template #default="scope">
-              <span
-                class="mx-1"
-                v-if="contactInfo[scope.$index].contact_link"
-                >{{ contactInfo[scope.$index].contact }}</span
-              >
-              <el-link
-                type="success"
-                v-if="contactInfo[scope.$index].contact_link"
-                :href="contactInfo[scope.$index].contact_link"
-              >
-                <el-image
-                  class="w-8 h-8"
-                  v-if="contactInfo[scope.$index].contact === 'Github'"
-                  src="/img/github.png"
-                  alt=""
-                />
-                <el-image
-                  class="w-8 h-8"
-                  v-if="contactInfo[scope.$index].contact === 'Blog'"
-                  src="/img/tistory.png"
-                  alt=""
-                />
-              </el-link>
-              <p v-else>
-                {{ contactInfo[scope.$index].contact }} :
-                {{ contactInfo[scope.$index].contact_address }}
-              </p>
-            </template>
-          </el-table-column>
-        </el-table>
+        <ClientOnly>
+          <el-table
+            :data="contactInfo"
+            border
+            style="width: 100%"
+            class="m-auto"
+          >
+            <el-table-column prop="profile" label="프로필" :min-width="30" />
+            <el-table-column prop="contact" label="contact" :min-width="70">
+              <template #default="scope">
+                <span
+                  class="mx-1"
+                  v-if="contactInfo[scope.$index].contact_link"
+                  >{{ contactInfo[scope.$index].contact }}</span
+                >
+                <el-link
+                  type="success"
+                  v-if="contactInfo[scope.$index].contact_link"
+                  :href="contactInfo[scope.$index].contact_link"
+                >
+                  <el-image
+                    class="w-8 h-8"
+                    v-if="
+                      contactInfo[scope.$index].contact === 'Github' &&
+                      !store.isDark
+                    "
+                    src="/img/github.png"
+                    alt=""
+                  />
+                  <Icon
+                    v-if="
+                      contactInfo[scope.$index].contact === 'Github' &&
+                      store.isDark
+                    "
+                    name="uil:github"
+                    color="white"
+                    class="w-8 h-8"
+                  />
+
+                  <el-image
+                    class="w-8 h-8"
+                    v-if="contactInfo[scope.$index].contact === 'Blog'"
+                    src="/img/tistory.png"
+                    alt=""
+                  />
+                </el-link>
+                <p v-else>
+                  {{ contactInfo[scope.$index].contact }} :
+                  {{ contactInfo[scope.$index].contact_address }}
+                </p>
+              </template>
+            </el-table-column>
+          </el-table>
+        </ClientOnly>
         <el-divider />
         <ProjectCompany :projectList="projectList" />
         <el-divider class="border-red-600" />
