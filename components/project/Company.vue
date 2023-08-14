@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { CarouselProps } from 'element-plus/es/components/carousel/src/carousel';
 
-const router = useRouter();
 const props = defineProps<{
   projectList: Database['public']['Tables']['projectlist']['Row'][];
 }>();
@@ -10,7 +9,7 @@ const responsiveCard = ref<CarouselProps['type']>('card');
 const openModal = ref<boolean[]>([false, false, false, false]);
 
 const goDetail = (index: number) => {
-  router.push(`/project/detail/${index}`);
+  navigateTo(`/project/detail/${index}`);
 };
 
 onMounted(() => {
@@ -32,7 +31,10 @@ onMounted(() => {
       height="400px"
     >
       <el-carousel-item v-for="(item, index) in projectList" :key="index">
-        <el-card @click="openModal[index] = true" class="cursor-pointer">
+        <el-card
+          @click="openModal[index] = true"
+          class="box-card cursor-pointer"
+        >
           <template #header>
             {{ item.title }}
           </template>

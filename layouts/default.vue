@@ -1,14 +1,15 @@
 <script lang="ts" setup>
 import { Sunny, Moon } from '@element-plus/icons-vue';
-
-const router = useRouter();
+import { useDarkStore } from '@/store/dark';
+const store = useDarkStore();
 const isDark = useDark();
+console.log(isDark.value);
 </script>
 
 <template>
   <div class="p-10 xs:p-5">
     <el-header class="flex justify-between">
-      <el-link type="success" @click="router.push('/')"
+      <el-link type="success" @click="() => navigateTo('/')"
         ><span class="text-2xl font-bold xs:text-xl xs:font-semibold"
           >Hyun's Portfolio</span
         ></el-link
@@ -16,7 +17,7 @@ const isDark = useDark();
 
       <ul class="flex gap-3 items-center justify-center">
         <li>
-          <el-link type="success" @click="router.push('/')" class="text-xl"
+          <el-link type="success" @click="() => navigateTo('/')" class="text-xl"
             >Home</el-link
           >
         </li>
@@ -24,7 +25,7 @@ const isDark = useDark();
         <li>
           <el-link
             type="success"
-            @click="router.push('/project/list')"
+            @click="() => navigateTo('/project/list')"
             class="text-xl"
             >Project</el-link
           >

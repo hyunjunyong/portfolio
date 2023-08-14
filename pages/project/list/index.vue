@@ -1,6 +1,4 @@
 <script setup lang="ts">
-const router = useRouter();
-
 const projectList = [
   { title: '일단떠나', link: '/project/detail/1' },
   { title: '날방', link: '/project/detail/2' },
@@ -26,7 +24,7 @@ const projectList = [
           >
             <el-card
               class="box-card mt-5 h-full cursor-pointer"
-              @click="() => router.push(item.link)"
+              @click="() => navigateTo(item.link)"
             >
               {{ item.title }}
             </el-card>
