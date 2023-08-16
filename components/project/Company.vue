@@ -39,11 +39,17 @@ onMounted(() => {
             {{ item.title }}
           </template>
           <template #default>
-            <el-image
+            <nuxt-img
+              :src="`img${item.imageUrl}`"
+              fit="contain"
+              format="webp"
+              class="w-full h-[300px] xs:h-60 object-contain"
+            />
+            <!-- <el-image
               :src="`img${item.imageUrl}`"
               fit="contain"
               class="w-full h-[300px] xs:h-60"
-            />
+            /> -->
           </template>
         </el-card>
         <ClientOnly>

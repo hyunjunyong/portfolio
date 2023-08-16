@@ -95,10 +95,11 @@ onMounted(() => {
                     class="w-6 h-6"
                   />
 
-                  <el-image
+                  <nuxt-img
                     class="w-6 h-6"
                     v-if="contactInfo[scope.$index].contact === 'Blog'"
                     src="/img/tistory.png"
+                    format="webp"
                     alt=""
                   />
                 </el-link>
@@ -122,11 +123,12 @@ onMounted(() => {
             >
               Skill
             </h3>
-            <img
+            <nuxt-img src="/img/vue.gif" width="250" height="200" />
+            <!-- <img
               src="/img/vue.gif"
               alt=""
               class="w-[250px] h-[200px] xs:w-[200px] xs:h-40"
-            />
+            /> -->
           </div>
           <SkillProgress :Skill="Skill" />
         </div>
