@@ -1,21 +1,22 @@
 <script setup lang="ts">
 import type { CarouselProps } from 'element-plus/es/components/carousel/src/carousel';
-
+import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
 const props = defineProps<{
   projectList: Database['public']['Tables']['projectlist']['Row'][];
 }>();
 
-const responsiveCard = ref<CarouselProps['type']>('card');
 const openModal = ref<boolean[]>([false, false, false, false]);
 
 const goDetail = (index: number) => {
   navigateTo(`/project/detail/${index}`);
 };
 
-onMounted(() => {
-  window.innerWidth >= 640
-    ? (responsiveCard.value = 'card')
-    : (responsiveCard.value = '');
+const breakpoints = useBreakpoints(breakpointsTailwind);
+const sm = breakpoints.smaller('sm');
+const responsiveCard = ref<CarouselProps['type']>(sm.value ? '' : 'card');
+
+watch(sm, (newSm) => {
+  sm.value ? (responsiveCard.value = '') : (responsiveCard.value = 'card');
 });
 </script>
 
