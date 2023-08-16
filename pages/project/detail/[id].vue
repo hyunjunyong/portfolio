@@ -1,6 +1,14 @@
 <script setup lang="ts">
 import { ElLoading } from 'element-plus';
-
+useHead({
+  title: 'protfolio project',
+  meta: [
+    {
+      name: '프론트엔드 포트폴리오 프로젝트',
+      content: '프론트엔드 포트폴리오 프로젝트',
+    },
+  ],
+});
 const route = useRoute();
 
 const projectData = ref<Database['public']['Tables']['projectDetail']['Row']>();

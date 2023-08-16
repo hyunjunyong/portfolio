@@ -43,8 +43,9 @@ onMounted(() => {
               :src="`img${item.imageUrl}`"
               fit="contain"
               format="webp"
-              class="w-full h-[300px] xs:h-60 object-contain"
+              class="w-full h-72 xs:h-60 object-contain"
             />
+            <!-- class="w-full h-[300px] xs:h-60 object-contain" -->
             <!-- <el-image
               :src="`img${item.imageUrl}`"
               fit="contain"

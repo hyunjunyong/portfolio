@@ -1,5 +1,10 @@
 <script lang="ts" setup>
 import { Right } from '@element-plus/icons-vue';
+useHead({
+  title: 'Front-end protfolio',
+  meta: [{ name: '프론트엔드 포트폴리오', content: '프론트엔드 포트폴리오' }],
+});
+
 const store = useDarkStore();
 
 const contactInfo = ref<Database['public']['Tables']['contact_info']['Row'][]>(
