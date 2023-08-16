@@ -1,4 +1,14 @@
 <script setup lang="ts">
+useHead({
+  title: 'Front-end protfolio',
+  meta: [
+    {
+      name: '프론트엔드 프로젝트 리스트',
+      content: '프론트엔드 프로젝트 리스트',
+    },
+  ],
+});
+
 const projectList = [
   { title: '일단떠나', link: '/project/detail/1' },
   { title: '날방', link: '/project/detail/2' },
