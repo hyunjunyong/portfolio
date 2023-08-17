@@ -93,6 +93,7 @@ onMounted(() => {
                   type="success"
                   v-if="contactInfo[scope.$index].contact_link"
                   :href="contactInfo[scope.$index].contact_link"
+                  target="_blank"
                 >
                   <Icon
                     v-if="contactInfo[scope.$index].contact === 'Github'"
