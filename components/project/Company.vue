@@ -5,8 +5,6 @@ const props = defineProps<{
   projectList: Database['public']['Tables']['projectlist']['Row'][];
 }>();
 
-const openModal = ref<boolean[]>([false, false, false, false]);
-
 const goDetail = (index: number) => {
   navigateTo(`/project/detail/${index}`);
 };
@@ -32,10 +30,7 @@ watch(sm, (newSm) => {
       height="400px"
     >
       <el-carousel-item v-for="(item, index) in projectList" :key="index">
-        <el-card
-          @click="openModal[index] = true"
-          class="box-card cursor-pointer"
-        >
+        <el-card @click="goDetail(item.id)" class="box-card cursor-pointer">
           <template #header>
             {{ item.title }}
           </template>
@@ -47,32 +42,8 @@ watch(sm, (newSm) => {
               :alt="`img${item.imageUrl}`"
               class="w-full h-72 xs:h-60 object-contain"
             />
-            <!-- class="w-full h-[300px] xs:h-60 object-contain" -->
-            <!-- <el-image
-              :src="`${item.imageUrl}`"
-              fit="contain"
-              class="w-full h-[300px] xs:h-60"
-            /> -->
           </template>
         </el-card>
-        <ClientOnly>
-          <el-dialog
-            :lock-scroll="false"
-            v-model="openModal[index]"
-            :title="item.title"
-            width="50%"
-          >
-            <span class="mt-5">{{ item.content }}</span>
-            <template #footer>
-              <span class="dialog-footer">
-                <el-button @click="openModal[index] = false">취소 </el-button>
-                <el-button type="primary" @click="goDetail(item.id)">
-                  자세히 보기
-                </el-button>
-              </span>
-            </template>
-          </el-dialog>
-        </ClientOnly>
       </el-carousel-item>
     </el-carousel>
   </div>

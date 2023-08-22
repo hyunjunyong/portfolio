@@ -25,7 +25,9 @@ const getProjectDetail = async () => {
     >('/api/projectDetail', {
       query: { id: route.params.id },
     });
-    projectData.value = data.value;
+    if (data.value) {
+      projectData.value = data.value;
+    }
     console.log(data);
   } finally {
     loading.close();

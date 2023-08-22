@@ -95,11 +95,8 @@ onMounted(() => {
                   :href="contactInfo[scope.$index].contact_link"
                   target="_blank"
                 >
-                  <Icon
+                  <DarkGithub
                     v-if="contactInfo[scope.$index].contact === 'Github'"
-                    name="uil:github"
-                    :color="iconColorMode"
-                    class="w-6 h-6"
                   />
 
                   <nuxt-img
