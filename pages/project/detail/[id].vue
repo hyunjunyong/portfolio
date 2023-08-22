@@ -29,14 +29,12 @@ const getProjectDetail = async () => {
       projectData.value = data.value;
     }
     console.log(data.value);
-    console.log(projectData.value?.Responsibilities);
   } finally {
     loading.close();
   }
 };
 
 const splitData = (data?: string) => {
-  console.log(data);
   if (data) return data.split(',');
 };
 onMounted(() => {
@@ -74,13 +72,11 @@ onMounted(() => {
           <LayoutSubTitle>
             <template #title>담당 업무</template>
             <template #content>
-              <p>
-                <ul class="list-disc list-inside pl-1">
+              <ul class="list-disc list-inside pl-1">
                 <li v-for="item in splitData(projectData?.Responsibilities)">
                   {{ item }}
                 </li>
               </ul>
-              </p>
             </template>
           </LayoutSubTitle>
           <LayoutSubTitle v-if="projectData?.result">
