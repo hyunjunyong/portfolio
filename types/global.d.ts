@@ -12,7 +12,9 @@ interface Database {
       };
       projectDetail: {
         Row: {
-          content: string;
+          Skill: string;
+          Responsibilities: string;
+          result?: string;
           end_date?: string;
           start_date: string;
           name: string;

@@ -28,10 +28,16 @@ const getProjectDetail = async () => {
     if (data.value) {
       projectData.value = data.value;
     }
-    console.log(data);
+    console.log(data.value);
+    console.log(projectData.value?.Responsibilities);
   } finally {
     loading.close();
   }
+};
+
+const splitData = (data?: string) => {
+  console.log(data);
+  if (data) return data.split(',');
 };
 onMounted(() => {
   getProjectDetail();
@@ -46,15 +52,43 @@ onMounted(() => {
       </el-header>
       <el-main class="m-auto">
         <ul class="list-disc">
-          <li>
-            기간 : {{ projectData?.start_date }} ~
-            {{ projectData?.end_date || '진행중' }}
-          </li>
-          <li v-if="projectData?.url" class="flex items-center">
-            <span>URL :</span>
-            <el-link type="success" :href="projectData?.url">이동</el-link>
-          </li>
-          <li v-html="projectData?.content" />
+          <LayoutSubTitle>
+            <template #title>기간</template>
+            <template #content
+              ><p>
+                {{ projectData?.start_date }} ~
+                {{ projectData?.end_date || '진행중' }}
+              </p></template
+            >
+          </LayoutSubTitle>
+          <LayoutSubTitle v-if="projectData?.url">
+            <template #title>URL</template>
+            <template #content
+              ><p>
+                <el-link type="success" :href="projectData?.url"
+                  ><span class="text-base">이동</span></el-link
+                >
+              </p></template
+            >
+          </LayoutSubTitle>
+          <LayoutSubTitle>
+            <template #title>담당 업무</template>
+            <template #content>
+              <p>
+                <ul class="list-disc list-inside pl-1">
+                <li v-for="item in splitData(projectData?.Responsibilities)">
+                  {{ item }}
+                </li>
+              </ul>
+              </p>
+            </template>
+          </LayoutSubTitle>
+          <LayoutSubTitle v-if="projectData?.result">
+            <template #title>성과</template>
+            <template #content>
+              <p>{{ projectData?.result }}</p></template
+            >
+          </LayoutSubTitle>
         </ul>
       </el-main>
     </el-container>
