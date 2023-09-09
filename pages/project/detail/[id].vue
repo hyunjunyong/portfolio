@@ -54,8 +54,7 @@ onMounted(() => {
             <template #title>기간</template>
             <template #content
               ><p>
-                {{ projectData?.start_date }} ~
-                {{ projectData?.end_date || '진행중' }}
+                {{ projectData?.start_date }}
               </p></template
             >
           </LayoutSubTitle>

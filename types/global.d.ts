@@ -15,7 +15,6 @@ interface Database {
           Skill: string;
           Responsibilities: string;
           result?: string;
-          end_date?: string;
           start_date: string;
           name: string;
           id: number;
