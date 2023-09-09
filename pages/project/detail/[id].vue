@@ -59,6 +59,12 @@ onMounted(() => {
               </p></template
             >
           </LayoutSubTitle>
+          <LayoutSubTitle v-if="projectData?.Skill">
+            <template #title>Skill</template>
+            <template #content>
+              <p>{{ projectData?.Skill }}</p></template
+            >
+          </LayoutSubTitle>
           <LayoutSubTitle v-if="projectData?.url">
             <template #title>URL</template>
             <template #content
