@@ -104,9 +104,10 @@
         <div>
           <LayoutSubTitle>
             <template #title>담당 역할</template>
-            <template #content
-              ><p>사용자에게 주변 추천 장소 기능 추가</p>
-              <p>각 사용자에 위치에서 교통편 , 거리 구현</p>
+            <template #content>
+              <p>페이지 퍼블리싱</p>
+              <p>사용자에게 주변 추천 장소 기능 추가</p>
+              <p>각 사용자에 위치에서 교통편 및 거리 api 연동</p>
               <p>장소 추천 api 연동</p></template
             >
           </LayoutSubTitle>
