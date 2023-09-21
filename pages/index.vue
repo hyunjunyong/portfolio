@@ -6,6 +6,10 @@ useHead({
   meta: [{ name: '프론트엔드 포트폴리오', content: '프론트엔드 포트폴리오' }],
 });
 
+const dayjs = useDayjs();
+const date = dayjs('2023-01-01');
+dayjs().format();
+
 const store = useDarkStore();
 
 const contactInfo = ref<Database['public']['Tables']['contact_info']['Row'][]>(
@@ -140,6 +144,9 @@ onMounted(() => {
             /> -->
           </div>
           <SkillProgress :Skill="Skill" />
+        </div>
+        <div>
+          {{ date }}
         </div>
       </el-main>
     </el-container>

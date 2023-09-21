@@ -19,6 +19,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     'nuxt-icon',
     '@nuxt/image',
+    'dayjs-nuxt',
   ],
   css: ['@/assets/css/main.css'],
   runtimeConfig: {
