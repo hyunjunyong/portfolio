@@ -145,9 +145,9 @@ onMounted(() => {
           </div>
           <SkillProgress :Skill="Skill" />
         </div>
-        <div>
+        <!-- <div>
           {{ date }}
-        </div>
+        </div> -->
       </el-main>
     </el-container>
   </div>
