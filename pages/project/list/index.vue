@@ -23,7 +23,7 @@ const projectList = [
       <el-header class="flex justify-center">
         <span class="text-2xl font-bold">ProjectList</span>
       </el-header>
-      <p>현재 단장중 ....</p>
+      <p>(10/30 복구)</p>
       <el-divider />
       <el-main>
         <ul>
